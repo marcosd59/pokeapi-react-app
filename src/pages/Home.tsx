@@ -9,6 +9,7 @@ import {
 import type { RootState } from "../store";
 import PokemonCard from "../components/PokemonCard";
 import SearchBar from "../components/SearchBar";
+import { LoaderSkeleton } from "../components/LoaderSkeleton";
 
 const pageSize = 6;
 
@@ -85,6 +86,12 @@ const Home: React.FC = () => {
     }
   };
 
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= Math.ceil(filteredNames.length / pageSize)) {
+      setLocalPage(newPage);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
       <SearchBar
@@ -95,31 +102,81 @@ const Home: React.FC = () => {
         onSuggestionClick={handleSuggestionClick}
       />
 
-      {loading && <p>Cargando...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
-      {filteredNames.length > 0 ? (
+      {loading ? (
+        <LoaderSkeleton />
+      ) : filteredNames.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {localPokemons.map((pokemon) => (
               <PokemonCard key={pokemon.id} pokemon={pokemon} />
             ))}
           </div>
-          <div className="flex justify-between mt-4">
+          <div className="flex items-center justify-center mt-6 space-x-1 sm:space-x-2">
             <button
               disabled={localPage === 1}
-              onClick={() => setLocalPage(localPage - 1)}
+              onClick={() => handlePageChange(localPage - 1)}
+              className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:bg-blue-600 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              Anterior
+              <span className="hidden sm:inline">Anterior</span>
+              <span className="sm:hidden">Ant</span>
             </button>
-            <span>
-              Página {localPage} de {Math.ceil(filteredNames.length / pageSize)}
-            </span>
+
+            <div className="flex space-x-1 sm:space-x-2">
+              {localPage > 1 && (
+                <button
+                  onClick={() => handlePageChange(1)}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-blue-500 hover:text-white transition text-sm sm:text-base"
+                >
+                  1
+                </button>
+              )}
+
+              {localPage > 2 && (
+                <span className="text-gray-800 text-sm sm:text-base">...</span>
+              )}
+
+              {localPage > 1 && (
+                <button
+                  onClick={() => handlePageChange(localPage - 1)}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-blue-500 hover:text-white transition text-sm sm:text-base"
+                >
+                  {localPage - 1}
+                </button>
+              )}
+
+              <button
+                className={`px-2 py-1 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base ${
+                  localPage === localPage
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-gray-700"
+                }`}
+              >
+                {localPage}
+              </button>
+
+              {localPage < Math.ceil(filteredNames.length / pageSize) && (
+                <button
+                  onClick={() => handlePageChange(localPage + 1)}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-white text-gray-700 font-medium shadow-sm hover:bg-blue-500 hover:text-white transition text-sm sm:text-base"
+                >
+                  {localPage + 1}
+                </button>
+              )}
+
+              {localPage < Math.ceil(filteredNames.length / pageSize) - 1 && (
+                <span className="text-gray-800 text-sm sm:text-base">...</span>
+              )}
+            </div>
+
             <button
               disabled={localPage * pageSize >= filteredNames.length}
-              onClick={() => setLocalPage(localPage + 1)}
+              onClick={() => handlePageChange(localPage + 1)}
+              className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:bg-blue-600 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              Siguiente
+              <span className="hidden sm:inline">Siguiente</span>
+              <span className="sm:hidden">Sig</span>
             </button>
           </div>
         </>
@@ -130,16 +187,70 @@ const Home: React.FC = () => {
               <PokemonCard key={pokemon.id} pokemon={pokemon} />
             ))}
           </div>
-          <div className="flex justify-between mt-4">
+
+          <div className="flex items-center justify-center mt-6 space-x-1 sm:space-x-2">
             <button
               disabled={page === 1}
               onClick={() => dispatch(setPage(page - 1))}
+              className="px-3 py-2 sm:px-6 sm:py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm transition-all duration-200 hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
             >
-              Anterior
+              <span className="hidden sm:inline">Anterior</span>
+              <span className="sm:hidden">Ant</span>
             </button>
-            <span>Página {page}</span>
-            <button onClick={() => dispatch(setPage(page + 1))}>
-              Siguiente
+
+            <div className="flex space-x-1 sm:space-x-2">
+              {page > 2 && (
+                <button
+                  onClick={() => dispatch(setPage(1))}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-md bg-white text-gray-700 font-medium border border-gray-300 hover:bg-blue-500 hover:text-white transition duration-200 text-sm sm:text-base"
+                >
+                  1
+                </button>
+              )}
+
+              {page > 2 && (
+                <span className="text-gray-800 text-sm sm:text-base">...</span>
+              )}
+
+              {page > 1 && (
+                <button
+                  onClick={() => dispatch(setPage(page - 1))}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-md bg-white text-gray-700 font-medium border border-gray-300 hover:bg-blue-500 hover:text-white transition duration-200 text-sm sm:text-base"
+                >
+                  {page - 1}
+                </button>
+              )}
+
+              <button
+                className={`px-2 py-1 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base ${
+                  page === page
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-gray-700 border border-gray-300"
+                } transition-all duration-200`}
+              >
+                {page}
+              </button>
+
+              {page < Math.ceil(filteredNames.length / pageSize) && (
+                <button
+                  onClick={() => dispatch(setPage(page + 1))}
+                  className="px-2 py-1 sm:px-4 sm:py-2 rounded-md bg-white text-gray-700 font-medium border border-gray-300 hover:bg-blue-500 hover:text-white transition duration-200 text-sm sm:text-base"
+                >
+                  {page + 1}
+                </button>
+              )}
+
+              {page < Math.ceil(filteredNames.length / pageSize) - 1 && (
+                <span className="text-gray-800 text-sm sm:text-base">...</span>
+              )}
+            </div>
+
+            <button
+              onClick={() => dispatch(setPage(page + 1))}
+              className="px-3 py-2 sm:px-6 sm:py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm transition-all duration-200 hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
+            >
+              <span className="hidden sm:inline">Siguiente</span>
+              <span className="sm:hidden">Sig</span>
             </button>
           </div>
         </>
