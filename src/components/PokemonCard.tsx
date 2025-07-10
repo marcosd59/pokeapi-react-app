@@ -2,8 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import type { Pokemon } from "../types/pokemon";
 
-const typeColor = (type: string) => `bg-${type}-500`;
-
 const typeIcons: Record<string, string> = {
   normal: "⚪",
   fire: "🔥",
@@ -31,8 +29,6 @@ interface Props {
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const navigate = useNavigate();
-
-  const mainType = pokemon.types[0].type.name;
 
   const handleViewDetails = () => {
     navigate(`/pokemon/${pokemon.id}`);
