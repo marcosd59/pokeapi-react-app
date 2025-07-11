@@ -46,10 +46,11 @@ PokeExplorer es una aplicación interactiva que permite a los usuarios buscar, e
 ![Vista de inicio](src/assets/Phone-01.png)
 ![Vista de inicio - Variante 2](src/assets/Phone-02.png)
 ![Vista de inicio - Variante 3](src/assets/Phone-03.png)
+![Vista de inicio - Variante 4](src/assets/Phone-04.png)
 
 ---
 
-### Características visuales
+## Características visuales
 
 - Vista principal con grid de tarjetas de Pokémon con gradientes dinámicos
 - Buscador inteligente con sugerencias en tiempo real
@@ -120,7 +121,7 @@ PokeExplorer es una aplicación interactiva que permite a los usuarios buscar, e
    http://localhost:5173
    ```
 
-## Estructura del proyecto
+### Estructura del proyecto
 
 ```
 pokeapi-react-app/
@@ -136,7 +137,7 @@ pokeapi-react-app/
 └── README.md         # Documentación principal
 ```
 
-## Solución de problemas comunes
+### Solución de problemas comunes
 
 1. **Error de puerto ocupado**
 
