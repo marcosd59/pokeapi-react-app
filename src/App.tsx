@@ -33,7 +33,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
 
-        <footer className="text-center py-4 text-white text-sm mt-8">
+        <footer className="text-center py-4 text-black text-sm mt-8">
           © {new Date().getFullYear()} PokéAPI Demo
         </footer>
       </div>

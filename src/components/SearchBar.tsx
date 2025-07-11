@@ -60,7 +60,7 @@ const SearchBar: React.FC<Props> = ({
       shadow-lg 
       max-h-48 
       overflow-auto 
-      z-50             {/* <- aquí subimos el z-index */}
+      z-50
     "
       >
         {suggestions.map((name) => (

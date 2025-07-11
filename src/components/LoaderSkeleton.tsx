@@ -1,6 +1,6 @@
 export const LoaderSkeleton = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-    {[...Array(9)].map((_, i) => (
+    {[...Array(6)].map((_, i) => (
       <div
         key={i}
         className="

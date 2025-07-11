@@ -1,6 +1,6 @@
 export const fetchPokemons = async (page: number, search: string) =>
 {
-    const limit = 9;
+    const limit = 6;
     const offset = (page - 1) * limit;
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     if(search)

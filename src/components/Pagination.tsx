@@ -12,7 +12,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-const MAX_PAGE = 145;
+const MAX_PAGE = 250;
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
@@ -59,7 +59,7 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <nav
       aria-label="Paginación"
-      className="mt-6 flex justify-center items-center space-x-2"
+      className="mt-6 flex justify-end items-center space-x-2"
     >
       <button
         onClick={() => onPageChange(1)}

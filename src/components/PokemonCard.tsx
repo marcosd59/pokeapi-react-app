@@ -77,8 +77,8 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         />
       </div>
 
-      <div className="relative z-10 text-sm font-semibold text-white bg-black bg-opacity-40 px-3 py-1 rounded-full">
-        #{pokemon.id}
+      <div className="relative z-10 text-xs font-bold text-white bg-gradient-to-r from-black/60 to-black/40 px-4 py-2 rounded-full border border-white/20 shadow-lg backdrop-blur-sm">
+        #{String(pokemon.id).padStart(3, "0")}
       </div>
 
       <div className="relative z-10 w-full flex items-center justify-center rounded-lg p-4">
