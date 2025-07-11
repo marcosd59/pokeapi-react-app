@@ -1,0 +1,88 @@
+# Instrucciones para ejecutar "PokeExplorer" localmente
+
+## Prerrequisitos
+- Node.js versión 22 o superior
+- npm o yarn
+- Git
+
+## Pasos de instalación
+
+1. **Clonar el repositorio**
+   ```
+   git clone https://github.com/marcosd59/pokeapi-react-app.git
+   cd pokeapi-react-app
+   ```
+
+2. **Instalar dependencias**
+   ```
+   npm install
+   ```
+   o si usas yarn:
+   ```
+   yarn install
+   ```
+
+3. **Iniciar el servidor de desarrollo**
+   ```
+   npm run dev
+   ```
+   o con yarn:
+   ```
+   yarn dev
+   ```
+
+4. **Abrir en el navegador**
+   - La aplicación se ejecutará en: http://localhost:5173
+   - Se abrirá automáticamente en tu navegador predeterminado
+
+## Scripts disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo con hot reload
+- `npm run build` - Construye la aplicación para producción
+- `npm run preview` - Vista previa de la build de producción
+- `npm run lint` - Ejecuta ESLint para revisar el código
+
+## Estructura del proyecto
+
+```
+pokeapi-react-app/
+├── public/           # Archivos estáticos
+├── src/
+│   ├── components/   # Componentes reutilizables
+│   ├── pages/        # Páginas de la aplicación
+│   ├── features/     # Estado de Redux
+│   ├── types/        # Tipos de TypeScript
+│   ├── api/          # Funciones de API
+│   └── assets/       # Imágenes y recursos
+├── docs/             # Documentación
+└── README.md         # Documentación principal
+```
+
+## Solución de problemas comunes
+
+1. **Error de puerto ocupado**
+   - Vite buscará automáticamente un puerto disponible
+   - O puedes especificar uno diferente: `npm run dev -- --port 3000`
+
+2. **Errores de dependencias**
+   - Elimina node_modules: `rm -rf node_modules`
+   - Reinstala: `npm install`
+
+3. **Problemas de cache**
+   - Limpia la cache de Vite: `npm run dev -- --force`
+
+## Tecnologías principales
+
+- React 18 con TypeScript
+- Vite como bundler
+- Tailwind CSS para estilos
+- Redux Toolkit para estado global
+- React Router para navegación
+- PokéAPI para datos
+
+## URLs importantes
+
+- Aplicación local: http://localhost:5173
+- Demo en vivo: https://pokeapi-react-app.netlify.app/
+- PokéAPI: https://pokeapi.co/
+- Repositorio: https://github.com/marcosd59/pokeapi-react-app
