@@ -1,25 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import PokemonDetails from "./pages/PokemonDetails";
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div
-        className="min-h-screen"
-        style={{ background: "radial-gradient(#ffbf0b, #e20000)" }}
-      >
-        <header className="bg-gradient-to-t from-white to-white shadow-lg py-4 mb-8 border-b-4 border-black">
+      <div className="min-h-screen bg-gray-100 text-gray-900">
+        <header className="bg-gradient-to-t bg-red-600 shadow-lg py-4 mb-8 border-b-4 border-black">
           <div className="container mx-auto flex items-center justify-between px-4">
             <div>
-              <div className="text-black text-lg font-semibold">
-                Marcos Pool Canul
-              </div>
+              <Link
+                to="/"
+                className="text-white text-lg font-semibold hover:text-gray-200 transition-colors cursor-pointer"
+              >
+                Marcos Damián Pool Canul
+              </Link>
             </div>
-            <div className="text-black text-sm text-right">
+            <div className="text-white text-sm text-right">
               <h1 className="text-2xl font-bold">PokéAPI React App</h1>
-              <p className="text-black">
+              <p className="text-white">
                 Busca y explora tus Pokémon favoritos
               </p>
             </div>

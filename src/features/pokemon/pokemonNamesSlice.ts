@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchPokemonNames = createAsyncThunk(
   "pokemonNames/fetchPokemonNames",
   async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000");
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=3000");
     const data = await res.json();
     return data.results.map((poke: any) => poke.name);
   }

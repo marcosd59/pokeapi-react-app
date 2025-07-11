@@ -47,9 +47,22 @@ const SearchBar: React.FC<Props> = ({
         Buscar
       </button>
     </div>
-
     {suggestions && suggestions.length > 0 && (
-      <ul className="absolute w-full bg-white border border-t-0 rounded-b-lg mt-1 shadow-lg max-h-48 overflow-auto z-10">
+      <ul
+        className="
+      absolute 
+      left-0 right-0 top-full 
+      w-full 
+      bg-white 
+      border border-t-0 
+      rounded-b-lg 
+      mt-1 
+      shadow-lg 
+      max-h-48 
+      overflow-auto 
+      z-50             {/* <- aquí subimos el z-index */}
+    "
+      >
         {suggestions.map((name) => (
           <li
             key={name}
